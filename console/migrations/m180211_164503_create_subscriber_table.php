@@ -14,7 +14,7 @@ class m180211_164503_create_subscriber_table extends Migration
     {
         $this->createTable('subscriber', [
             'id'    => $this->primaryKey(),
-            'email' => $this->string()
+            'email' => $this->string()->unique()
 
         ]);
     }
