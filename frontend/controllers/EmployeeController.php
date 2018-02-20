@@ -8,6 +8,7 @@
 
 namespace frontend\controllers;
 
+use Yii;
 use frontend\models\Employee;
 use yii\web\Controller;
 use frontend\models\example\Human;
@@ -35,6 +36,46 @@ class EmployeeController extends Controller
         echo '<br>';
         $animal1->walk();
 
+    }
+
+    public function actionRegister() {
+
+        $model = new Employee();
+        $model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
+        $formData = Yii::$app->request->post();
+
+        if( Yii::$app->request->isPost) {
+
+            $model->attributes = $formData;
+
+            if( $model->validate() && $model->save() ) {
+                Yii::$app->session->setFlash('success', 'Registered!');
+            }
+        }
+
+        return $this->render('register.php', [
+         'model' => $model
+        ]);
+    }
+
+        public function actionUpdate() {
+
+            $model = new Employee();
+            $model->scenario = Employee::SCENARIO_EMPLOYEE_UPDATE;
+            $formData = Yii::$app->request->post();
+
+            if( Yii::$app->request->isPost) {
+
+                $model->attributes = $formData;
+
+                if( $model->validate() && $model->save() ) {
+                    Yii::$app->session->setFlash('success', 'Data updated!');
+                }
+            }
+
+        return $this->render('update.php' , [
+            'model' => $model
+        ]);
     }
 
 }

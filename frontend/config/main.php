@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'language' => 'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -43,7 +44,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'news' => 'test/index',
-                'post/<id:\d+>' => 'test/views',
+                'post/<id:\d+>' => 'test/view',
             ],
         ],
         'stringHelper' => [
